@@ -48,8 +48,8 @@ namespace HR_System
  - enter the basic information for these employees
  - enter the allowances the employee got and also enter information of each allowance
  - enter the deductions the employee got and also enter information of each deduction
- - enter the vacations the employee got and also enter information of each vacation
---------------------------------------------------------------------------------------------------------------------------");
+ - enter the vacations the employee got and also enter information of each vacation");
+                Separator();
 
                 #endregion
 
