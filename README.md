@@ -253,6 +253,9 @@ Possible improvements for future versions include:
 * Add file-based data persistence.
 
 ---
+## 📄 License
+
+This project is open for educational and personal use.
 
 ## Author
 
