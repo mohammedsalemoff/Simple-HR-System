@@ -26,6 +26,7 @@ The project was created as a practical application of **Object-Oriented Programm
 * Restart the application without closing it.
 * Uses constructors to initialize objects.
 * Uses copy constructors for creating object copies.
+* Uses a reusable `Helper` class for common application methods and input validation.
 
 ---
 
@@ -48,7 +49,8 @@ HR_System
 │   │   ├── Employee.cs
 │   │   ├── Allowance.cs
 │   │   ├── Deduction.cs
-│   │   └── Vacation.cs
+│   │   ├── Vacation.cs
+│   │   └── Helper.cs
 │   │
 │   ├── Program.cs
 │   └── HR_System.csproj
@@ -133,6 +135,41 @@ Constructors:
 
 ---
 
+### Helper
+
+The `Helper` class is a **static utility class** that contains reusable methods used throughout the application.
+
+It is responsible for common tasks such as displaying formatted messages, reading user input, and validating different types of input.
+
+#### Application Helper Methods
+
+* `WelcomeApp()` — Displays the application welcome message.
+* `PrintMessage()` — Displays a message with separators.
+* `Separator()` — Prints a separator line.
+* `Beauty()` — Prints decorative lines used to separate sections in the output.
+
+#### Input Methods
+
+* `ReadString()` — Reads and validates string input.
+* `ReadNumber(int)` — Reads and validates integer input.
+* `ReadNumber(decimal)` — Reads and validates decimal input.
+* `ReadDate()` — Reads and validates dates using the `dd/MM/yyyy` format.
+* `ReadCharacter()` — Reads and validates a character input.
+
+#### Validation Methods
+
+* `IsCharValid()` — Validates `Y`, `y`, `N`, or `n` input.
+* `IsAgeValid()` — Validates that the age is between 18 and 59.
+* `IsZero(int)` — Checks whether an integer value is zero.
+* `IsZero(decimal)` — Checks whether a decimal value is zero.
+
+The `Helper` class also demonstrates **method overloading**, such as:
+
+* `ReadNumber()` for `int` and `decimal`.
+* `IsZero()` for `int` and `decimal`.
+
+---
+
 ## OOP Concepts Used
 
 This project was built to practice several important C# and OOP concepts, including:
@@ -150,6 +187,9 @@ This project was built to practice several important C# and OOP concepts, includ
 * Arrays
 * Object Composition
 * Methods
+* Static Classes
+* Static Methods
+* Method Overloading
 * Input Validation
 * Exception-safe collection initialization
 
@@ -196,6 +236,13 @@ For each employee, the program collects their basic information and then gives t
 2. Deductions
 3. Vacations
 
+The `Helper` class is used throughout the application to handle common tasks such as:
+
+* Reading user input
+* Validating input
+* Displaying error messages
+* Formatting console output
+
 After entering the data, the application displays the complete information for every employee.
 
 The user can then choose whether to run the application again or close it.
@@ -231,9 +278,12 @@ The main goal was to practice working with:
 * Lists of objects
 * Arrays of objects
 * Methods
+* Static helper methods
+* Method overloading
 * User input
 * Input validation
 * Organizing a C# console application
+* Reusing common functionality through a helper class
 
 ---
 
@@ -253,6 +303,7 @@ Possible improvements for future versions include:
 * Add file-based data persistence.
 
 ---
+
 ## 📄 License
 
 This project is open for educational and personal use.
