@@ -21,7 +21,8 @@ namespace HR_System
         // Default Constructor
         public Allowance()
         {
-
+            this.Name = "";
+            this.Amount = 0;
         }
 
         // Parameterized Constructor

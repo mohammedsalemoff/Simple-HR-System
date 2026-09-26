@@ -18,7 +18,14 @@ namespace HR_System
         // Default Constructor
         public Deduction()
         {
+            this.Name = string.Empty;
+            this.Amount = 0;
+        }
 
+        // Parameterized Constructor
+        public Deduction(decimal amount)
+        {
+            this.Amount = amount;
         }
 
         // Copy Constructor

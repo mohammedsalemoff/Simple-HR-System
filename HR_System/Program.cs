@@ -40,7 +40,7 @@ namespace HR_System
                 #region Welcome the User, then explain what the Program can do
 
                 // First, let's welcome the user 
-                WelcomeApp("HR System");
+                Helper.WelcomeApp("HR System");
 
                 // A message explaining what the program can do
                 Console.WriteLine(@"In this program you can:
@@ -49,7 +49,7 @@ namespace HR_System
  - enter the allowances the employee got and also enter information of each allowance
  - enter the deductions the employee got and also enter information of each deduction
  - enter the vacations the employee got and also enter information of each vacation");
-                Separator();
+                Helper.Separator();
 
                 #endregion
 
@@ -58,11 +58,11 @@ namespace HR_System
 
                 // ask user to enter the number of employees he/she want
                 int nSize = 0;
-            ReadNoEmps: if (!ReadNumber("the no. of employees", out nSize))
+            ReadNoEmps: if (!Helper.ReadNumber("the no. of employees", out nSize))
                     goto ReadNoEmps;
-            if(!IsZero(nSize))
+            if(!Helper.IsZero(nSize))
                     goto ReadNoEmps;
-                Separator();
+                Helper.Separator();
 
                 #endregion
 
@@ -78,34 +78,34 @@ namespace HR_System
                     #region Read Basic Information of the Employee
 
                     // read and validate Employee Name
-                ReadEmpName: if (!ReadString("Employee Name", out empName))
+                ReadEmpName: if (!Helper.ReadString("Employee Name", out empName))
                         goto ReadEmpName;
                 if(empName.Length < 10)
                     {
-                        PrintMessage("Error | Please enter name contains at least 10 characters");
+                        Helper.PrintMessage("Error | Please enter name contains at least 10 characters");
                         goto ReadEmpName;
                     }
-                    Separator();
+                    Helper.Separator();
                     // read and validate Employee Age
-                ReadEmpAge: if (!ReadNumber("Employee Age", out empAge))
+                ReadEmpAge: if (!Helper.ReadNumber("Employee Age", out empAge))
                         goto ReadEmpAge;
-                    if (!IsAgeValid(empAge))
+                    if (!Helper.IsAgeValid(empAge))
                         goto ReadEmpAge;
-                    Separator();
+                    Helper.Separator();
                     // read Employee Birth Date
-                ReadEmpBirthDate: if (!ReadDate("Employee Birth Date", out empBirthDate))
+                ReadEmpBirthDate: if (!Helper.ReadDate("Employee Birth Date", out empBirthDate))
                         goto ReadEmpBirthDate;
-                    Separator();
+                    Helper.Separator();
                     // read Employee Address
-                ReadEmpAddress: if (!ReadString("Employee Address", out empAddress))
+                ReadEmpAddress: if (!Helper.ReadString("Employee Address", out empAddress))
                         goto ReadEmpAddress;
-                    Separator();
+                    Helper.Separator();
                     // read Employee Salary
-                ReadEmpSalary: if (!ReadNumber("Employee Salary", out empSalary))
+                ReadEmpSalary: if (!Helper.ReadNumber("Employee Salary", out empSalary))
                         goto ReadEmpSalary;
-                    if (!IsZero(empSalary))
+                    if (!Helper.IsZero(empSalary))
                         goto ReadEmpSalary;
-                    Separator();
+                    Helper.Separator();
                     // assign these values to the employee object using the parameterized constructor
                     emps[i] = new Employee(empName,empAddress,empBirthDate,empAge,empSalary);
 
@@ -116,37 +116,37 @@ namespace HR_System
                     while (true)
                     {
                         Console.WriteLine("To add an allowance for the employee, enter 1 to skip that step enter 0 (1 or 0 only)");
-                    ReadUserChoiceAllowance: if (!ReadNumber("your choice", out nUserChoice))
+                    ReadUserChoiceAllowance: if (!Helper.ReadNumber("your choice", out nUserChoice))
                         {
                             goto ReadUserChoiceAllowance;
                         }
                         if (nUserChoice != 0 && nUserChoice != 1)
                         {
-                            PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
+                            Helper.PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
                             goto ReadUserChoiceAllowance;
                         }
 
                         if (nUserChoice == 1)
                         {
 
-                        ReadNameAllow: if (!ReadString("the allowance name", out allowName))
+                        ReadNameAllow: if (!Helper.ReadString("the allowance name", out allowName))
                             {
                                 goto ReadNameAllow;
                             }
-                            Separator();
-                        ReadAmountAllow: if (!ReadNumber("the allowance amount", out allowAmount))
+                            Helper.Separator();
+                        ReadAmountAllow: if (!Helper.ReadNumber("the allowance amount", out allowAmount))
                             {
                                 goto ReadAmountAllow;
                             }
-                            if (!IsZero(allowAmount))
+                            if (!Helper.IsZero(allowAmount))
                                 goto ReadAmountAllow;
-                            Separator();
+                            Helper.Separator();
                             // passing the allowance name using the parameterized constructor
                             myAllowance = new Allowance(allowName);
                             // passing the allownace amount using the AmountProperty 
                             myAllowance.Amount = allowAmount;
 
-                            emps[i].Allowances.Add(myAllowance);
+                            emps[i].Allowances.Add(new Allowance() { Name= allowName,Amount=allowAmount});
                             myAllowance = new Allowance();
                         }
                         else
@@ -157,91 +157,91 @@ namespace HR_System
 
                     #endregion
 
-                    Separator();
+                    Helper.Separator();
 
                     #region Read Deductions
 
                     while (true)
                     {
                         Console.WriteLine("To add a deduction for the employee, enter 1 to skip that step enter 0 (1 or 0 only)");
-                    ReadUserChoiceDeduction: if (!ReadNumber("your choice", out nUserChoice))
+                    ReadUserChoiceDeduction: if (!Helper.ReadNumber("your choice", out nUserChoice))
                         {
                             goto ReadUserChoiceDeduction;
                         }
 
                         if (nUserChoice != 0 && nUserChoice != 1)
                         {
-                            PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
+                            Helper.PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
                             goto ReadUserChoiceDeduction;
                         }
 
                         if (nUserChoice == 0)
                             break;
 
-                    ReadNameDeduction: if (!ReadString("the deduction name", out dedName))
+                    ReadNameDeduction: if (!Helper.ReadString("the deduction name", out dedName))
                         {
                             goto ReadNameDeduction;
                         }
-                        Separator();
-                    ReadAmountDeduction: if (!ReadNumber("the deduction amount", out dedAmount))
+                        Helper.Separator();
+                    ReadAmountDeduction: if (!Helper.ReadNumber("the deduction amount", out dedAmount))
                         {
                             goto ReadAmountDeduction;
                         }
-                        if (!IsZero(dedAmount))
+                        if (!Helper.IsZero(dedAmount))
                             goto ReadAmountDeduction;
-                        Separator();
+                        Helper.Separator();
                         myDeduction = new Deduction();
                         // passing the deduction details using the Properties
                         myDeduction.Name = dedName;
                         myDeduction.Amount = dedAmount;
 
-                        emps[i].Deductions.Add(myDeduction);
+                        emps[i].Deductions.Add(new Deduction() {Name = dedName,Amount = dedAmount});
                         myDeduction = new Deduction();
                     }
 
                     #endregion
 
-                    Separator();
+                    Helper.Separator();
 
                     #region Read Vacations
 
                     while (true)
                     {
                         Console.WriteLine("To add a vacation for the employee, enter 1 to skip that step enter 0 (1 or 0 only)");
-                    ReadUserChoiceVacation: if (!ReadNumber("your choice", out nUserChoice))
+                    ReadUserChoiceVacation: if (!Helper.ReadNumber("your choice", out nUserChoice))
                         {
                             goto ReadUserChoiceVacation;
                         }
                         if (nUserChoice != 0 && nUserChoice != 1)
                         {
-                            PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
+                            Helper.PrintMessage("Error | enter 1 to add and 0 to skip that step | Try Again");
                             goto ReadUserChoiceVacation;
                         }
                         if (nUserChoice == 0)
                             break;
 
-                    ReadTypeVacation: if (!ReadString("the vacation type", out vacType))
+                    ReadTypeVacation: if (!Helper.ReadString("the vacation type", out vacType))
                         {
                             goto ReadTypeVacation;
                         }
-                        Separator();
-                    ReadCountVacation: if (!ReadNumber("the no. of days", out vacCount))
+                        Helper.Separator();
+                    ReadCountVacation: if (!Helper.ReadNumber("the no. of days", out vacCount))
                         {
                             goto ReadCountVacation;
                         }
-                        if(!IsZero(vacCount))
+                        if(!Helper.IsZero(vacCount))
                             goto ReadCountVacation;
-                        Separator();
-                    ReadStartVacation: if (!ReadDate("vacation start date", out vacStart))
+                        Helper.Separator();
+                    ReadStartVacation: if (!Helper.ReadDate("vacation start date", out vacStart))
                         {
                             goto ReadStartVacation;
                         }
-                        Separator();
-                    ReadEndVacation: if (!ReadDate("vacation end date", out vacEnd))
+                        Helper.Separator();
+                    ReadEndVacation: if (!Helper.ReadDate("vacation end date", out vacEnd))
                         {
                             goto ReadEndVacation;
                         }
-                        Separator();
+                        Helper.Separator();
                         myVacation = new Vacation();
                         // passing the details of the vacation using Properties
                         myVacation.Type = vacType;
@@ -249,7 +249,7 @@ namespace HR_System
                         myVacation.startDate = vacStart;
                         myVacation.endDate = vacEnd;
 
-                        emps[i].Vacations.Add(myVacation);
+                        emps[i].Vacations.Add(new Vacation() { Type = vacType,startDate=vacStart,endDate=vacEnd,DaysCount=vacCount});
                         myVacation = new Vacation();
                     }
 
@@ -266,12 +266,12 @@ namespace HR_System
 
                 for (int nCounter = 0; nCounter < emps.Length; ++nCounter)
                 {
-                    Beauty();
+                    Helper.Beauty();
                     Console.WriteLine($"Employee no. {nCounter + 1} Details:- ");
                     Console.WriteLine("----------------------------------------");
                     emps[nCounter].PrintEmployeeInfo();
                 }
-                Beauty();
+                Helper.Beauty();
 
                 #endregion
 
@@ -280,13 +280,13 @@ namespace HR_System
                 // ask the user if he/she wanna use the app again
             ReadUserDecision: Console.WriteLine(@"To use the Application again, Press y or Y only
 To close the application, Press n or N only");
-                if (!ReadCharacter("your decision", out cUserDecision))
+                if (!Helper.ReadCharacter("your decision", out cUserDecision))
                     goto ReadUserDecision;
-                if (!IsCharValid(cUserDecision))
+                if (!Helper.IsCharValid(cUserDecision))
                     goto ReadUserDecision;
                 if (cUserDecision == 'n' || cUserDecision == 'N')
                 {
-                    PrintMessage("Thank you for use | We hope you got a good experience");
+                    Helper.PrintMessage("Thank you for use | We hope you got a good experience");
                     return;
                 }
                 Console.Clear();
@@ -298,159 +298,6 @@ To close the application, Press n or N only");
             #endregion
 
         }
-
-        #region App_Methods
-
-        // 1- Welcome Message Method
-        static void WelcomeApp(string appName)
-        {
-            Console.ReadKey();
-            Console.WriteLine("**************************************************************************************************************************");
-            Console.WriteLine(@$"Hi, sir
-Welcome to {appName} Application
-We hope you have a nice time with us
-**************************************************************************************************************************");
-        }
-
-        // 2- Print Any Message in beautiful form
-        static void PrintMessage(string message)
-        {
-            Separator();
-            Console.WriteLine(message);
-            Separator();
-        }
-
-        // 3- Print a Separator between the lines
-        static void Separator()
-        {
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
-        }
-
-        // 4- Print 2 lines to separate between the employees in the output show step and also at the end of the program
-        static void Beauty()
-        {
-            Console.WriteLine("**************************************************************************************************************************");
-            Console.WriteLine("**************************************************************************************************************************");
-        }
-
-        // 5- Read a string value from the user and validate it
-        static bool ReadString(string field, out string str)
-        {
-            Console.Write($"Please,enter {field}: ");
-            str = Console.ReadLine();
-            if (str == string.Empty)
-            {
-                PrintMessage("Error | You entered a not valid string | Try again");
-                return false;
-            }
-            return true;
-        }
-
-        // 6- Read an integer number from the user and validate it (---OVRLOADING---)
-        static bool ReadNumber(string part, out int number)
-        {
-            Console.Write($"Please, enter {part}: ");
-            if (!int.TryParse(Console.ReadLine(), out number))
-            {
-                PrintMessage("Error | You entered a not valid number | Try again");
-                return false;
-            }
-            if(number < 0)
-            {
-                PrintMessage("Error | Don't enter a negative value | Try again");
-                return false;
-            }
-            return true;
-        }
-
-        // 7- Read a decimal number from the user then validate it (---OVRLOADING---)
-        static bool ReadNumber(string part, out decimal number)
-        {
-            Console.Write($"Please, enter {part}: ");
-            if (!decimal.TryParse(Console.ReadLine(), out number))
-            {
-                PrintMessage("Error | You entered a not valid number | Try again");
-                return false;
-            }
-            if (number < 0)
-            {
-                PrintMessage("Error | Don't enter a negative value | Try again");
-                return false;
-            }
-            return true;
-        }
-
-        // 8- Read a DateTime from the user then validate it 
-        static bool ReadDate(string part, out DateTime dt)
-        {
-            Console.Write($"Please, enter {part} in this format Day/Month/Year like dd/MM/yyyy: ");
-            bool isConverted = DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
-            if (!isConverted)
-            {
-                PrintMessage("Error | Please, enter a valid date in this format Day/Month/Year like dd/MM/yyyy | Try Again");
-                return false;
-            }
-            return true;
-        }
-
-        // 9- Read a character from the user then validate it
-        static bool ReadCharacter(string part,out char cUserInput)
-        {
-            Console.Write($"Please, enter {part}: ");
-            if(!char.TryParse(Console.ReadLine(),out cUserInput))
-            {
-                PrintMessage("Error | You entered a not valid character | Try Again");
-                return false;
-            }
-            return true;
-        }
-
-        // 10- Is (y,Y,n and N) method check
-        static bool IsCharValid(char cInput)
-        {
-            if(cInput != 'n' && cInput != 'N' && cInput != 'y' && cInput != 'Y')
-            {
-                PrintMessage($"Error | You enter {cInput} character | Enter (n,N,y and Y) only | Try again");
-                return false;
-            }
-            return true;
-        }
-
-        // 11- Is valid age method, just between 18 and 59 values
-        static bool IsAgeValid(int age)
-        {
-            if(age<18 || age > 59)
-            {
-                PrintMessage("Error | Enter an age from 18 to 59 only | Try Again");
-                return false;
-            }
-            return true;
-        }
-
-        // 12- Is Zero or not (---OVERLOADING---)
-        static bool IsZero(int number)
-        {
-            if(number == 0)
-            {
-                PrintMessage("Error | Enter a positive value not zero | Try Again");
-                return false;
-            }
-            return true;
-        }
-
-        // 13- Is Zero or not (---OVERLOADING---)
-        static bool IsZero(decimal number)
-        {
-            if (number == 0)
-            {
-                PrintMessage("Error | Enter a positive value not zero | Try Again");
-                return false;
-            }
-            return true;
-        }
-
-        #endregion
-
     }
 
 }

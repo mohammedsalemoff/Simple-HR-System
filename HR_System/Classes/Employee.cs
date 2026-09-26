@@ -60,6 +60,14 @@ namespace HR_System
 
         #region Constructors
 
+        // Default Constructor
+        public Employee()
+        {
+            this.Allowances = new List<Allowance>();
+            this.Deductions = new List<Deduction>();
+            this.Vacations = new List<Vacation>();
+        }
+
         // Parameterzied Constructor
         public Employee(string name,string address,DateTime birthDate,int age,decimal salary)
         {
