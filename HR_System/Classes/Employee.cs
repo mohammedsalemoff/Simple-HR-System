@@ -98,7 +98,7 @@ namespace HR_System
 
         #endregion
 
-        #region The Class Methods
+        #region The Employee Methods
 
         // This method to print the full data of the Employee
         public void PrintEmployeeInfo()
@@ -109,7 +109,7 @@ namespace HR_System
   - Date of birth: {this._DateOfBirth.ToString("dd/MM/yyyy")}
   - Address: {this.Address}
   - Salary: {this._Salary}");
-            this.Separator();
+            Helper.Separator();
             int count = 0;
             Console.WriteLine("Allownaces:-");
             foreach (Allowance i in this.Allowances)
@@ -120,7 +120,7 @@ Allowance Name: {i.Name} ----- Allowance Amount: {i.Amount}
 ");
                 count++;
             }
-            this.Separator();
+            Helper.Separator();
             count = 0;
             Console.WriteLine(@"Deductions:-");
             foreach (Deduction i in this.Deductions)
@@ -131,7 +131,7 @@ Deduction Name: {i.Name} ----- Deduction Amount: {i.Amount}
 ");
                 count++;
             }
-            Separator();
+            Helper.Separator();
             count = 0;
             Console.WriteLine("Vacations:-");
             foreach (Vacation i in this.Vacations)
@@ -146,13 +146,8 @@ Type: {i.Type} ----- Days Count: {i.DaysCount}
             }
         }
 
-        // This method used to separate between the lines
-        private void Separator()
-        {
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
-        } 
-
         #endregion
+
 
         #endregion
 
